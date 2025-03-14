@@ -8,6 +8,7 @@ namespace SubClassLib
 {
     public class EducationalSubscription : Subscription
     {
+        public string Name => "Educational";
         public decimal Price => 5;
         public int MinPeriod => 3;
         public List<string> Channels => new List<string> { "Discovery", "National Geographic", "History" };

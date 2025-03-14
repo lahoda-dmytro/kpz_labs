@@ -8,6 +8,7 @@ namespace SubClassLib
 {
     public class PremiumSubscription  : Subscription
     {
+        public string Name => "Premium";
         public decimal Price => 20;
         public int MinPeriod => 6;
         public List<string> Channels => new List<string> { "BBC", "CNN", "MTV", "Discovery", "National Geographic", "History" };
