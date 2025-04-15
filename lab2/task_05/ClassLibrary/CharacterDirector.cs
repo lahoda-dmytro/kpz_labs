@@ -8,7 +8,7 @@ namespace ClassLibrary
 {
     public class CharacterDirector
     {
-        public Character ConstructHero(ICharacterBuilder builder)
+        public Character ConstructHero(CharacterBuilder builder)
         {
             return builder.SetHeight(1.70)
                           .SetBodyType("fat")
@@ -20,7 +20,7 @@ namespace ClassLibrary
                           .Build();
         }
 
-        public Character ConstructEnemy(ICharacterBuilder builder)
+        public Character ConstructEnemy(CharacterBuilder builder)
         {
             return builder.SetHeight(1.85)
                           .SetBodyType("demon")
