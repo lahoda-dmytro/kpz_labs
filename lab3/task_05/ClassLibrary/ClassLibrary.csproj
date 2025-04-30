@@ -44,10 +44,14 @@
     <Compile Include="ClosingType.cs" />
     <Compile Include="ConsoleLoggerListener.cs" />
     <Compile Include="DisplayType.cs" />
+    <Compile Include="FileLoadStrategy.cs" />
     <Compile Include="IEventListener.cs" />
+    <Compile Include="IImageLoadStrategy.cs" />
     <Compile Include="LightElementNode.cs" />
+    <Compile Include="LightImageNode.cs" />
     <Compile Include="LightNode.cs" />
     <Compile Include="LightTextNode.cs" />
+    <Compile Include="NetworkLoadStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

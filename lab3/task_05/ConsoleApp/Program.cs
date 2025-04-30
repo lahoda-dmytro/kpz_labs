@@ -23,12 +23,19 @@ namespace ConsoleApp
             //div.AddChild(h1);
             //div.AddChild(ul);
 
-            var logger = new ConsoleLoggerListener();
-            div.AddEventListener("click", logger);
-            div.AddEventListener("mouseover", logger);
+            //var logger = new ConsoleLoggerListener();
+            //div.AddEventListener("click", logger);
+            //div.AddEventListener("mouseover", logger);
 
-            div.TriggerEvent("click");
-            div.TriggerEvent("mouseover");
+            //div.TriggerEvent("click");
+            //div.TriggerEvent("mouseover");
+
+            var img1 = new LightImageNode("https://learn.ztu.edu.ua/theme/image.php/boost/assign/1731653773/monologo?filtericon=1", new FileLoadStrategy());
+            var img2 = new LightImageNode("https://learn.ztu.edu.ua/theme/image.php/boost/core/1731653773/f/pdf", new NetworkLoadStrategy());
+
+            Console.WriteLine(img1.OuterHTML());
+            Console.WriteLine(img2.OuterHTML());
+
 
             Console.WriteLine(div.OuterHTML());
         }
