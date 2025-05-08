@@ -20,6 +20,7 @@ namespace ClassLibrary
             TagName = tagName;
             Display = display;
             Closing = closing;
+            Create();
         }
 
 
@@ -45,8 +46,45 @@ namespace ClassLibrary
         }
 
 
-        public void AddClass(string className) => CssClasses.Add(className);
-        public void AddChild(LightNode child) => Children.Add(child);
+        public void AddClass(string className)
+        {
+            CssClasses.Add(className);
+            OnClassListApplied();
+        }
+
+        public override void AddChild(LightNode child)
+        {
+            Children.Add(child);
+            base.AddChild(child); 
+            TriggerEvent("child-added");
+        }
+
+        protected override void OnCreated()
+        {
+            Console.WriteLine($"Element <{TagName}> was created");
+            TriggerEvent("created");
+        }
+
+        protected override void OnStylesApplied()
+        {
+            Console.WriteLine($"Styles applied to <{TagName}>");
+            TriggerEvent("styles-applied");
+        }
+
+        protected override void OnClassListApplied()
+        {
+            if (CssClasses.Count > 0)
+            {
+                Console.WriteLine($"Classes {string.Join(", ", CssClasses)} added to <{TagName}>");
+                TriggerEvent("classes-applied");
+            }
+        }
+
+        protected override void OnInserted()
+        {
+            Console.WriteLine($"Element <{TagName}> was inserted into DOM");
+            TriggerEvent("inserted");
+        }
 
         public override string OuterHTML(int indent = 0)
         {
@@ -83,5 +121,4 @@ namespace ClassLibrary
             return sb.ToString();
         }
     }
-
 }
