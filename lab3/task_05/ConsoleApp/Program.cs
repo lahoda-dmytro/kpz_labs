@@ -85,60 +85,27 @@ namespace ConsoleApp
             // створюємо простий html
             var div = new LightElementNode("div", DisplayType.Block, ClosingType.Double);
             var h1 = new LightElementNode("h1", DisplayType.Block, ClosingType.Double);
-            var text = new LightTextNode("тест команди");
+            var text = new LightTextNode("тест стейту");
             
             h1.AddChild(text);
             div.AddChild(h1);
             
-            // демонстрація ітератора
-            Console.WriteLine("=== демонстрація ітератора ===");
+            // демонстрація стейту
+            Console.WriteLine("=== демонстрація шаблону стейт ===");
             
-            Console.WriteLine("обхід в глибину:");
-            var depthIterator = new DepthIterator(div);
-            while (depthIterator.HasNext())
-            {
-                var node = depthIterator.Next();
-                Console.WriteLine($"- {node.GetType().Name}");
-            }
-            
-            Console.WriteLine("\nобхід в ширину:");
-            var breadthIterator = new BreadthIterator(div);
-            while (breadthIterator.HasNext())
-            {
-                var node = breadthIterator.Next();
-                Console.WriteLine($"- {node.GetType().Name}");
-            }
-
-            // демонстрація команди
-            Console.WriteLine("=== демонстрація шаблону команда ===");
-            
-            var invoker = new CommandInvoker();
-            
-            // додаємо клас
-            var addClassCommand = new AddClassCommand(div, "container");
-            invoker.ExecuteCommand(addClassCommand);
-            Console.WriteLine("після додавання класу:");
+            Console.WriteLine("початковий стан:");
             Console.WriteLine(div.OuterHTML());
             
-            // додаємо текст
-            var addTextCommand = new AddChildCommand(h1, text);
-            invoker.ExecuteCommand(addTextCommand);
-            Console.WriteLine("\nпісля додавання тексту:");
-            Console.WriteLine(h1.OuterHTML());
-            
-            // додаємо заголовок
-            var addHeaderCommand = new AddChildCommand(div, h1);
-            invoker.ExecuteCommand(addHeaderCommand);
-            Console.WriteLine("\nпісля додавання заголовка:");
+            Console.WriteLine("\nпісля встановлення видимого стану:");
+            div.SetState(new VisibleState());
             Console.WriteLine(div.OuterHTML());
             
-            // демонстрація undo/redo
-            Console.WriteLine("\nпісля undo:");
-            invoker.Undo();
+            Console.WriteLine("\nпісля встановлення прихованого стану:");
+            div.SetState(new HiddenState());
             Console.WriteLine(div.OuterHTML());
             
-            Console.WriteLine("\nпісля redo:");
-            invoker.Redo();
+            Console.WriteLine("\nпісля встановлення inline стану:");
+            div.SetState(new InlineState());
             Console.WriteLine(div.OuterHTML());
         }
     }
