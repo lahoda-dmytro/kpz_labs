@@ -8,7 +8,7 @@ namespace ClassLibrary
 {
     public abstract class LightNode
     {
-        // Template Method pattern
+        // хуки життєвого циклу
         public virtual void OnCreated() { }
         public virtual void OnInserted() { }
         public virtual void OnRemoved() { }
@@ -16,7 +16,7 @@ namespace ClassLibrary
         public virtual void OnClassListApplied() { }
         public virtual void OnTextRendered() { }
 
-        // Template method that defines the rendering algorithm
+        // шаблонний метод рендерингу
         public string Render(int indent = 0)
         {
             OnCreated();

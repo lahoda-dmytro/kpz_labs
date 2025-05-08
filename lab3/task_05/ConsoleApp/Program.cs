@@ -85,29 +85,12 @@ namespace ConsoleApp
             // створюємо простий html
             var div = new LightElementNode("div", DisplayType.Block, ClosingType.Double);
             var h1 = new LightElementNode("h1", DisplayType.Block, ClosingType.Double);
-            var text = new LightTextNode("тест ітератора");
+
             
             h1.AddChild(text);
             div.AddChild(h1);
             
-            // демонстрація ітератора
-            Console.WriteLine("=== демонстрація ітератора ===");
-            
-            Console.WriteLine("обхід в глибину:");
-            var depthIterator = new DepthIterator(div);
-            while (depthIterator.HasNext())
-            {
-                var node = depthIterator.Next();
-                Console.WriteLine($"- {node.GetType().Name}");
-            }
-            
-            Console.WriteLine("\nобхід в ширину:");
-            var breadthIterator = new BreadthIterator(div);
-            while (breadthIterator.HasNext())
-            {
-                var node = breadthIterator.Next();
-                Console.WriteLine($"- {node.GetType().Name}");
-            }
+
         }
     }
 }
