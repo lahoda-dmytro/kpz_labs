@@ -1,22 +1,21 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace ClassLibrary
 {
-    public interface IHTMLIterator
+    public interface IIterator
     {
         bool HasNext();
         LightNode Next();
         void Reset();
     }
 
-    public class DepthFirstIterator : IHTMLIterator
+    public class DepthIterator : IIterator
     {
         private readonly LightNode root;
         private readonly Stack<LightNode> stack;
 
-        public DepthFirstIterator(LightNode root)
+        public DepthIterator(LightNode root)
         {
             this.root = root;
             this.stack = new Stack<LightNode>();
@@ -31,13 +30,13 @@ namespace ClassLibrary
         public LightNode Next()
         {
             if (!HasNext())
-                throw new InvalidOperationException("No more elements");
+                throw new InvalidOperationException("немає більше елементів");
 
             var current = stack.Pop();
 
             if (current is LightElementNode elementNode)
             {
-                // Add children in reverse order to process them in correct order when popping
+                // додаємо дітей в зворотньому порядку
                 for (int i = elementNode.Children.Count - 1; i >= 0; i--)
                 {
                     stack.Push(elementNode.Children[i]);
@@ -55,12 +54,12 @@ namespace ClassLibrary
         }
     }
 
-    public class BreadthFirstIterator : IHTMLIterator
+    public class BreadthIterator : IIterator
     {
         private readonly LightNode root;
         private readonly Queue<LightNode> queue;
 
-        public BreadthFirstIterator(LightNode root)
+        public BreadthIterator(LightNode root)
         {
             this.root = root;
             this.queue = new Queue<LightNode>();
@@ -75,7 +74,7 @@ namespace ClassLibrary
         public LightNode Next()
         {
             if (!HasNext())
-                throw new InvalidOperationException("No more elements");
+                throw new InvalidOperationException("немає більше елементів");
 
             var current = queue.Dequeue();
 

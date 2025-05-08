@@ -85,14 +85,12 @@ namespace ConsoleApp
             // створюємо простий html
             var div = new LightElementNode("div", DisplayType.Block, ClosingType.Double);
             var h1 = new LightElementNode("h1", DisplayType.Block, ClosingType.Double);
-            var text = new LightTextNode("тест шаблонного методу");
+
             
             h1.AddChild(text);
             div.AddChild(h1);
             
-            // демонстрація шаблонного методу
-            Console.WriteLine("=== демонстрація шаблонного методу ===");
-            Console.WriteLine(div.Render());
+
         }
     }
 }
