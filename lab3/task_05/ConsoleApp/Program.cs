@@ -85,7 +85,7 @@ namespace ConsoleApp
             // створюємо простий html
             var div = new LightElementNode("div", DisplayType.Block, ClosingType.Double);
             var h1 = new LightElementNode("h1", DisplayType.Block, ClosingType.Double);
-            var text = new LightTextNode("тест ітератора");
+            var text = new LightTextNode("тест команди");
             
             h1.AddChild(text);
             div.AddChild(h1);
@@ -108,6 +108,38 @@ namespace ConsoleApp
                 var node = breadthIterator.Next();
                 Console.WriteLine($"- {node.GetType().Name}");
             }
+
+            // демонстрація команди
+            Console.WriteLine("=== демонстрація шаблону команда ===");
+            
+            var invoker = new CommandInvoker();
+            
+            // додаємо клас
+            var addClassCommand = new AddClassCommand(div, "container");
+            invoker.ExecuteCommand(addClassCommand);
+            Console.WriteLine("після додавання класу:");
+            Console.WriteLine(div.OuterHTML());
+            
+            // додаємо текст
+            var addTextCommand = new AddChildCommand(h1, text);
+            invoker.ExecuteCommand(addTextCommand);
+            Console.WriteLine("\nпісля додавання тексту:");
+            Console.WriteLine(h1.OuterHTML());
+            
+            // додаємо заголовок
+            var addHeaderCommand = new AddChildCommand(div, h1);
+            invoker.ExecuteCommand(addHeaderCommand);
+            Console.WriteLine("\nпісля додавання заголовка:");
+            Console.WriteLine(div.OuterHTML());
+            
+            // демонстрація undo/redo
+            Console.WriteLine("\nпісля undo:");
+            invoker.Undo();
+            Console.WriteLine(div.OuterHTML());
+            
+            Console.WriteLine("\nпісля redo:");
+            invoker.Redo();
+            Console.WriteLine(div.OuterHTML());
         }
     }
 }
