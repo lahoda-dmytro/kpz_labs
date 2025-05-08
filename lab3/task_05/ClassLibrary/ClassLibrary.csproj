@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClosingType.cs" />
+    <Compile Include="Command.cs" />
     <Compile Include="DisplayType.cs" />
     <Compile Include="Iterator.cs" />
     <Compile Include="LightElementNode.cs" />
