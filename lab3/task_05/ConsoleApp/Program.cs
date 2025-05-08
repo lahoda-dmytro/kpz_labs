@@ -85,28 +85,12 @@ namespace ConsoleApp
             // створюємо простий html
             var div = new LightElementNode("div", DisplayType.Block, ClosingType.Double);
             var h1 = new LightElementNode("h1", DisplayType.Block, ClosingType.Double);
-            var text = new LightTextNode("тест стейту");
+
             
             h1.AddChild(text);
             div.AddChild(h1);
             
-            // демонстрація стейту
-            Console.WriteLine("=== демонстрація шаблону стейт ===");
-            
-            Console.WriteLine("початковий стан:");
-            Console.WriteLine(div.OuterHTML());
-            
-            Console.WriteLine("\nпісля встановлення видимого стану:");
-            div.SetState(new VisibleState());
-            Console.WriteLine(div.OuterHTML());
-            
-            Console.WriteLine("\nпісля встановлення прихованого стану:");
-            div.SetState(new HiddenState());
-            Console.WriteLine(div.OuterHTML());
-            
-            Console.WriteLine("\nпісля встановлення inline стану:");
-            div.SetState(new InlineState());
-            Console.WriteLine(div.OuterHTML());
+
         }
     }
 }
